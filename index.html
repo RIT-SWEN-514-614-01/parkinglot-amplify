@@ -1,0 +1,66 @@
+<html>
+    <head></head>
+    <body>
+        <h1>Parking lot notifications:</h1>
+        <div>
+
+        </div>
+        <h1>New notification</h1>
+        <form>
+            <label for="identifier">identifier</label>
+            <input type="number" id="identifier"></input>
+            <label for="request">request</label>
+            <input type="number" id="request"></input>
+            <label for="lot">lot</label>
+            <input type="number" id="lot"></input>
+            <label for="email">email</label>
+            <input id="email"></input>
+            <button id="submitButton">Submit</button>
+        </form>
+        <select id="trackedLot">
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>
+        <h3 id="numCars">0</h3>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript">
+            var apiUrl = "https://y76833ic33.execute-api.us-east-1.amazonaws.com/prod";
+
+            (function(){
+                window.setInterval(getLotData, 10000);
+                getLotData();
+            })();
+
+            $("#trackedLot").on("change", function(){
+                getLotData();
+            })
+
+            function getLotData(){
+                $.ajax({
+                    type: "GET",
+                    url: apiUrl + "?trackedLot=" + $("#trackedLot").val(),
+                    contentType:'application/json',
+                })
+                .always(function (response) {
+                    $("#numCars").text(response["Items"]["0"]["numberOfCars"]["N"]);
+                    console.log(response);
+                    console.log(response["Items"]["0"]["numberOfCars"]["N"]);
+                });
+                console.log("run1");
+                return false;
+            }
+
+            $("#submitButton").on("click", function(){
+                $.ajax({
+                    type: "POST",
+                    url: apiUrl,
+                    data: JSON.stringify({"identifier": $("#identifier").val(), "request": $("#request").val(), "lot": $("#lot").val(), "email": $("#email").val()}),
+                    contentType: "application/json",
+                });
+                console.log("run2");
+                return false;
+            })
+        </script>
+    </body>
+</html>
