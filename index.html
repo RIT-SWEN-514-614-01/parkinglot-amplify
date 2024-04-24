@@ -36,7 +36,7 @@
 
             $("#trackedLot").on("change", function(){
                 var stream1 = '<iframe id="stream" width="560" height="315" src="https://www.youtube.com/embed/RuiHEi2ImpI?si=p3OTkNPj_GYZ4zrZ" title="YouTube video player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
-                var stream2 = '<iframe id="stream" src="https://player.twitch.tv/?channel=stopsigncam&parent=localhost" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>'
+                var stream2 = '<iframe id="stream" src="https://player.twitch.tv/?channel=stopsigncam&parent=amplifyapp" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>'
                 $('#stream').replaceWith(eval("stream" + $("#trackedLot").val()));
 
                 getLotData();
