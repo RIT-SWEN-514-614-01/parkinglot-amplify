@@ -22,17 +22,23 @@
             <option value="2">2</option>
         </select>
         <h3 id="numCars">0</h3>
+        <iframe id="stream" width="560" height="315" src="https://www.youtube.com/embed/RuiHEi2ImpI?si=p3OTkNPj_GYZ4zrZ" title="YouTube video player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script type="text/javascript">
+            document.cookie="__Host-name=YouTube; Secure; Path=https://www.youtube.com/embed?v=RuiHEi2ImpI; SameSite=None; Partitioned;"
             var apiUrl = "https://y76833ic33.execute-api.us-east-1.amazonaws.com/prod";
 
-            (function(){
-                window.setInterval(getLotData, 10000);
-                getLotData();
-            })();
+            // (function(){
+            //     window.setInterval(getLotData, 10000);
+            //     getLotData();
+            // })();
 
             $("#trackedLot").on("change", function(){
+                var stream1 = '<iframe id="stream" width="560" height="315" src="https://www.youtube.com/embed/RuiHEi2ImpI?si=p3OTkNPj_GYZ4zrZ" title="YouTube video player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
+                var stream2 = '<iframe id="stream" src="https://player.twitch.tv/?channel=stopsigncam&parent=localhost" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>'
+                $('#stream').replaceWith(eval("stream" + $("#trackedLot").val()));
+
                 getLotData();
             })
 
