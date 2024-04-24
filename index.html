@@ -30,12 +30,12 @@
             <input id="email"></input>
             <button id="submitButton" class="button is-link">Submit</button>
         </form>
-        <select id="trackedLot">
+        <select id="trackedLot" class="select">
             <option value="1">1</option>
             <option value="2">2</option>
         </select>
         <h3 id="numCars">0</h3>
-        <iframe id="stream" width="1320rem" height="630rem" src="https://www.youtube.com/embed/RuiHEi2ImpI?si=p3OTkNPj_GYZ4zrZ" title="YouTube video player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe id="stream" width="1000rem" height="400rem" src="https://www.youtube.com/embed/RuiHEi2ImpI?si=p3OTkNPj_GYZ4zrZ" title="YouTube video player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script type="text/javascript">
@@ -48,8 +48,8 @@
             // })();
 
             $("#trackedLot").on("change", function(){
-                var stream1 = '<iframe id="stream" width="1320rem" height="630rem" src="https://www.youtube.com/embed/RuiHEi2ImpI?si=p3OTkNPj_GYZ4zrZ" title="YouTube video player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
-                var stream2 = '<iframe id="stream" src="https://player.twitch.tv/?channel=stopsigncam&parent=main.djfs942sinw96.amplifyapp.com" frameborder="0" allowfullscreen="true" scrolling="no" width="1320rem" height="630rem"></iframe>'
+                var stream1 = '<iframe id="stream" width="1000rem" height="400rem" src="https://www.youtube.com/embed/RuiHEi2ImpI?si=p3OTkNPj_GYZ4zrZ" title="YouTube video player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
+                var stream2 = '<iframe id="stream" src="https://player.twitch.tv/?channel=stopsigncam&parent=main.djfs942sinw96.amplifyapp.com" frameborder="0" allowfullscreen="true" scrolling="no" width="1000rem" height="400rem"></iframe>'
                 $('#stream').replaceWith(eval("stream" + $("#trackedLot").val()));
 
                 getLotData();
