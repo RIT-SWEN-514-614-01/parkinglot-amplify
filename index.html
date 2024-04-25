@@ -37,24 +37,22 @@
             
             <b>Select the type of notification you would like to receive by following the key below to fill out the form</b>
             <h1>New notification</h1>
-            <img src="TopicKey.png" width="100%" alt="A Key to the identifier, request, and lot for the form below">
             <form>
                 <div class="field">
-                    <label class="label" for="identifier">Select an Identifier</label>
+                    <label class="label" for="identifier">Select what you would like to be notified for</label>
                     <div class="control">
-                        <input class="input" type="number" id="identifier"></input>
+                        <select id="identifier">
+                            <option value="1">Request information >= number of available spots</option>
+                            <option value="2">Request information <= number of available spots</option>
+                            <option value="3">Spot id #(Request information) available</option>
+                            <option value="4">Spot id #(Request information) taken</option>
+                        </select>
                     </div>
                 </div>
                 <div class="field">
                     <label class="label" for="request">Select the Request Information</label>
                     <div class="control">
                         <input class="input" type="number" id="request"></input>
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label" for="lot">Select the Parkinglot Number</label>
-                    <div class="control">
-                        <input class="input" type="number" id="lot"></input>
                     </div>
                 </div>
                 <div class="field">
@@ -83,16 +81,16 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
             <script type="text/javascript">
                 document.cookie="__Host-name=YouTube; Secure; Path=https://www.youtube.com/embed?v=RuiHEi2ImpI; SameSite=None; Partitioned;"
-                var apiUrl = "https://y76833ic33.execute-api.us-east-1.amazonaws.com/prod";
+                var apiUrl = API_URL;
     
-                // (function(){
-                //     window.setInterval(getLotData, 10000);
-                //     getLotData();
-                // })();
+                (function(){
+                    window.setInterval(getLotData, 10000);
+                    getLotData();
+                })();
     
                 $("#trackedLot").on("change", function(){
                     var stream1 = '<iframe id="stream" width="1000rem" height="600rem" src="https://www.youtube.com/embed/RuiHEi2ImpI?si=p3OTkNPj_GYZ4zrZ" title="YouTube video player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
-                    var stream2 = '<iframe id="stream" src="https://player.twitch.tv/?channel=stopsigncam&parent=main.d18fs5t0my5m0f.amplifyapp.com" frameborder="0" allowfullscreen="true" scrolling="no" width="1000rem" height="600rem"></iframe>'
+                    var stream2 = '<iframe id="stream" src="https://player.twitch.tv/?channel=stopsigncam&parent=' + window.location.href.slice(8) + '" frameborder="0" allowfullscreen="true" scrolling="no" width="1000rem" height="600rem"></iframe>'
                     $('#stream').replaceWith(eval("stream" + $("#trackedLot").val()));
     
                     getLotData();
@@ -117,7 +115,7 @@
                     $.ajax({
                         type: "POST",
                         url: apiUrl,
-                        data: JSON.stringify({"identifier": $("#identifier").val(), "request": $("#request").val(), "lot": $("#lot").val(), "email": $("#email").val()}),
+                        data: JSON.stringify({"identifier": $("#identifier").val(), "request": $("#request").val(), "lot": $("#trackedLot").val(), "email": $("#email").val()}),
                         contentType: "application/json",
                     });
                     console.log("run2");
