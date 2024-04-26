@@ -78,10 +78,7 @@
                 <option value="1">1</option>
                 <option value="2">2</option>
             </select>
-            <span>
-                <h3><b>Current Total Car Count:</b> <span id="numCars">0</span></h3>
-                
-            </span>
+
             <iframe id="stream" width="1000rem" height="600rem" src="https://www.youtube.com/embed/RuiHEi2ImpI?si=p3OTkNPj_GYZ4zrZ" title="YouTube video player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -91,36 +88,13 @@
                 // Are you redeploying?
                 const apiUrl = (window.env.apiurl).slice(1);
                 console.log(apiUrl + ":)");
-
-                // (function(){
-                //     window.setInterval(getLotData, 10000);
-                //     getLotData();
-                // })();
     
                 $("#trackedLot").on("change", function(){
                     var stream1 = '<iframe id="stream" width="1000rem" height="600rem" src="https://www.youtube.com/embed/RuiHEi2ImpI?si=p3OTkNPj_GYZ4zrZ" title="YouTube video player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
                     var stream2 = '<iframe id="stream" src="https://player.twitch.tv/?channel=stopsigncam&parent=' + window.location.href.slice(8, 42) + '" frameborder="0" allowfullscreen="true" scrolling="no" width="1000rem" height="600rem"></iframe>'
                     $('#stream').replaceWith(eval("stream" + $("#trackedLot").val()));
-    
-                    getLotData();
-                })
-    
-                function getLotData(){
-
-                    $.ajax({
-                        type: "GET",
-                        url: apiUrl + "?trackedLot=" + $("#trackedLot").val(),
-                        contentType:'application/json',
-                        headers: {'Access-Control-Allow-Origin': '*'}
                     })
-                    .always(function (response) {
-                        $("#numCars").text(response["Items"]["0"]["numberOfCars"]["N"]);
-                        console.log(response);
-                        console.log(response["Items"]["0"]["numberOfCars"]["N"]);
-                    });
-                    console.log("run1");
-                    return false;
-                }
+    
     
                 $("#submitButton").on("click", function(){
                     $.ajax({
