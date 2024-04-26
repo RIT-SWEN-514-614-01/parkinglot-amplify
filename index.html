@@ -26,12 +26,6 @@
             }
 
         </style>
-        
-        <script>
-            window.env = {
-                apiurl: '_API_URL' // The terraform will replace this with the sed -i text replace command
-            };
-        </script>
     </head>
     <body>
         <h1 class="is-size-2">Parking lot notifications:</h1>
@@ -84,10 +78,9 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
             <script type="text/javascript">
                 document.cookie="__Host-name=YouTube; Secure; Path=https://www.youtube.com/embed?v=RuiHEi2ImpI; SameSite=None; Partitioned;"
-                //var apiUrl = process.env.API_URL;;
-                // Are you redeploying?
-                const apiUrl = (window.env.apiurl).slice(1);
-                console.log(apiUrl + ":)");
+
+                const apiUrl = "https://y76833ic33.execute-api.us-east-1.amazonaws.com/prod";
+                console.log(apiUrl);
     
                 $("#trackedLot").on("change", function(){
                     var stream1 = '<iframe id="stream" width="1000rem" height="600rem" src="https://www.youtube.com/embed/RuiHEi2ImpI?si=p3OTkNPj_GYZ4zrZ" title="YouTube video player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
