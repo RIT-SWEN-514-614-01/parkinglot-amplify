@@ -106,10 +106,12 @@
                 })
     
                 function getLotData(){
+
                     $.ajax({
                         type: "GET",
                         url: apiUrl + "?trackedLot=" + $("#trackedLot").val(),
                         contentType:'application/json',
+                        headers: {'Access-Control-Allow-Origin': '*'}
                     })
                     .always(function (response) {
                         $("#numCars").text(response["Items"]["0"]["numberOfCars"]["N"]);
